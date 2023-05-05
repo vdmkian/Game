@@ -5,11 +5,17 @@ class Scene1 extends Phaser.Scene {
     preload(){
         this.load.path = './assets/';
         this.load.image('BDGame', 'BDGame.png');
-        this.load.audio('Doodlebob', ['Doodlebob.mp3']);
+        this.load.audio('Loading', ['Loading.mp3']);
     }
     create(){
-        //var sound = this.sound.add('Loading');
-        this.sound.play('Doodlebob');
+        var sound1 = this.sound.add('Loading',
+            {
+                loop: false,
+                volume: 0.6
+            });
+        sound1.play();
+        //this.sound.play(sound)
+        //this.sound.play('Loading');
         var game = this.add.image(300,300,'BDGame');
         game.setScale(600/game.height,600/game.width);
         this.graphics = this.add.graphics();
@@ -44,10 +50,14 @@ class Scene2 extends Phaser.Scene {
     preload(){
         this.load.path = './assets/';
         this.load.image('DBStudios', 'DBStudios.png');
-        this.load.audio('Loading', ['Loading.mp3']);
+        this.load.audio('Doodlebob', ['Doodlebob.mp3']);
     }
     create(){
-        this.sound.play('Loading');
+        this.sound.play('Doodlebob',
+            {
+                loop: false,
+                volume: 0.6
+            });
         var loading = this.add.image(300,300,'DBStudios');
         loading.setScale(600/loading.height,600/loading.width);
 
@@ -80,6 +90,7 @@ class Scene3 extends Phaser.Scene {
     create(){
         var menu = this.add.image(-300,300,'BDMenu');
         menu.setScale(600/menu.height,600/menu.width);
+        this.add.text(0,0,"Created by\nKian van der Meer\nThis is my multiline text",{color: '0x000000'});
 
         this.tweens.add({
             targets: menu,
